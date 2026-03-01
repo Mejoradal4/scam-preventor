@@ -142,7 +142,8 @@
             <div class="flex flex-wrap justify-center gap-6" id="nav-container">
                 <div onclick="showSection('home')" class="nav-link active-link" id="link-home">Home</div>
                 <div onclick="showSection('frequent')" class="nav-link" id="link-frequent">Frequent Scams</div>
-                <div onclick="showSection('discord')" class="nav-link" id="link-discord">Discord Links</div>
+                <!-- Sección renombrada a petición del usuario -->
+                <div onclick="showSection('discord')" class="nav-link" id="link-discord">Frequent Discord scam messages</div>
                 <div onclick="showSection('about')" class="nav-link" id="link-about">About Me</div>
                 <div onclick="showSection('youtube')" class="nav-link" id="link-youtube">YouTube Scam Videos</div>
                 <div onclick="showSection('contacts')" class="nav-link" id="link-contacts">Contacts</div>
@@ -154,8 +155,8 @@
     <div class="content-area">
         <!-- Sección: Home -->
         <section id="home" class="active">
-            <!-- Imagen cargada desde tu GitHub personal -->
-            <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Escudo de segurança com X protegendo contra hackers]" class="hero-image">
+            <!-- Imagen oficial cargada desde GitHub -->
+            <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Escudo de seguridad protegiendo contra hackers]" class="hero-image">
             <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter uppercase">Welcome.</h1>
             <p class="text-zinc-600 uppercase tracking-widest text-sm text-center">Creation by Mejoradal4</p>
         </section>
@@ -166,7 +167,7 @@
         </section>
 
         <section id="discord">
-            <div class="coming-soon-text">Coming Soon</div>
+            <div class="coming-soon-text text-center">Coming Soon</div>
         </section>
 
         <section id="about">
@@ -191,13 +192,13 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 3.1 // 2026</p>
+                <p>Mejoradal4 // Version v 3.2 // 2026</p>
             </div>
         </div>
     </footer>
 
     <script>
-        console.log("Scam Preventor v3.1 | Imagem oficial integrada | Desenvolvido por Mejoradal4");
+        console.log("Scam Preventor v3.2 | Secciones actualizadas | Desarrollado por Mejoradal4");
 
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(sec => {
