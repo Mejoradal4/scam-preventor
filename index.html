@@ -109,6 +109,26 @@
             text-transform: uppercase;
         }
 
+        .update-card {
+            background-color: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .version-badge {
+            background-color: var(--accent-red);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.4rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-right: 0.5rem;
+        }
+
         .contact-card {
             background-color: var(--card-bg);
             border: 1px solid #1a1a1a;
@@ -178,6 +198,7 @@
                 <div onclick="navigateTo('discord')" class="nav-link" id="link-discord">Frequent Discord scam messages</div>
                 <div onclick="navigateTo('youtube')" class="nav-link" id="link-youtube">YouTube Scam Videos</div>
                 <div onclick="navigateTo('contacts')" class="nav-link" id="link-contacts">Contacts</div>
+                <div onclick="navigateTo('updates')" class="nav-link" id="link-updates">Updates</div>
             </div>
         </div>
     </nav>
@@ -217,6 +238,56 @@
                 </div>
             </div>
         </section>
+
+        <!-- Nueva sección: Updates -->
+        <section id="updates">
+            <h2 class="text-5xl font-black mb-12 tracking-tighter uppercase text-center">Development Updates</h2>
+            
+            <div class="update-card">
+                <div class="flex items-center mb-4">
+                    <span class="version-badge">v 4.1</span>
+                    <h3 class="text-xl font-bold uppercase">New Updates Section</h3>
+                </div>
+                <ul class="text-zinc-400 list-disc list-inside space-y-2">
+                    <li>Added the official "Updates" section to track website development.</li>
+                    <li>Reorganized navigation menu for better accessibility.</li>
+                </ul>
+            </div>
+
+            <div class="update-card opacity-80">
+                <div class="flex items-center mb-4">
+                    <span class="version-badge">v 4.0</span>
+                    <h3 class="text-xl font-bold uppercase">Massive Navigation Overhaul</h3>
+                </div>
+                <ul class="text-zinc-400 list-disc list-inside space-y-2">
+                    <li>Implemented Deep Linking: Users can now share direct URLs to specific sections.</li>
+                    <li>Fixed Browser History: "Back" and "Forward" buttons are now fully functional.</li>
+                    <li>Touch Optimization: Eliminated 300ms lag for mobile and smart display devices.</li>
+                    <li>Enhanced UI: Fixed "active" link highlighting and added logo redirection to Home.</li>
+                </ul>
+            </div>
+
+            <div class="update-card opacity-60">
+                <div class="flex items-center mb-4">
+                    <span class="version-badge">v 3.8</span>
+                    <h3 class="text-xl font-bold uppercase">Compatibility Fix</h3>
+                </div>
+                <ul class="text-zinc-400 list-disc list-inside space-y-2">
+                    <li>Removed "target=_blank" from external links to prevent crashes on Echo Show devices.</li>
+                </ul>
+            </div>
+
+            <div class="update-card opacity-40">
+                <div class="flex items-center mb-4">
+                    <span class="version-badge">v 3.7</span>
+                    <h3 class="text-xl font-bold uppercase">Renaming & Reorganizing</h3>
+                </div>
+                <ul class="text-zinc-400 list-disc list-inside space-y-2">
+                    <li>Renamed "About Me" section to "Information".</li>
+                    <li>Reordered navigation buttons: Information is now after Home.</li>
+                </ul>
+            </div>
+        </section>
     </div>
 
     <footer class="p-16 text-center border-t border-zinc-900 bg-black">
@@ -227,52 +298,42 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 4.0 // 2026</p>
+                <p>Mejoradal4 // Version v 4.1 // 2026</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Sistema de navegación avanzado v4.0 (Deep Linking incluido)
+        // Sistema de navegación avanzado v4.1 (Incluye Updates)
         function showSection(sectionId) {
-            const validSections = ['home', 'about', 'frequent', 'discord', 'youtube', 'contacts'];
-            // Si el hash está vacío o no es válido, por defecto vamos a home
+            const validSections = ['home', 'about', 'frequent', 'discord', 'youtube', 'contacts', 'updates'];
             const activeId = (sectionId && validSections.includes(sectionId)) ? sectionId : 'home';
 
-            // Ocultar todas las secciones
             document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-            
-            // Desmarcar todos los enlaces de navegación
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-link'));
 
-            // Activar la sección objetivo
             const targetSection = document.getElementById(activeId);
             if(targetSection) targetSection.classList.add('active');
 
-            // Resaltar el botón del menú
             const activeNavButton = document.getElementById('link-' + activeId);
             if(activeNavButton) activeNavButton.classList.add('active-link');
 
-            // Scroll suave a la parte superior (FIX para sincronización)
             setTimeout(() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 50);
         }
 
-        // Función para cambiar el Hash en la URL
         function navigateTo(sectionId) {
             window.location.hash = sectionId;
         }
 
-        // EVENTO: Detectar cambios en la URL (Deep Linking y botones Atrás/Adelante)
         window.addEventListener('hashchange', () => {
             const sectionId = window.location.hash.replace('#', '');
             showSection(sectionId);
         });
 
-        // EVENTO: Carga inicial para detectar enlaces directos
         window.addEventListener('load', () => {
-            console.log("Scam Preventor v4.0 | Routing & Hash Logic Active | Developed by Mejoradal4");
+            console.log("Scam Preventor v4.1 | Updates Section Live | Developed by Mejoradal4");
             const initialSection = window.location.hash.replace('#', '') || 'home';
             showSection(initialSection);
         });
