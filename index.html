@@ -109,6 +109,22 @@
             text-transform: uppercase;
         }
 
+        /* Estilos para tarjetas informativas */
+        .info-card {
+            background-color: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: #333;
+        }
+
         .update-card {
             background-color: var(--card-bg);
             border: 1px solid #1a1a1a;
@@ -205,13 +221,34 @@
 
     <div class="content-area">
         <section id="home">
-            <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Escudo de seguridad protegiendo contra hackers]" class="hero-image">
+            <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Imagen de un escudo de seguridad]" class="hero-image">
             <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter uppercase">Welcome.</h1>
             <p class="text-zinc-600 uppercase tracking-widest text-sm text-center">Creation by Mejoradal4</p>
         </section>
 
+        <!-- Sección Information actualizada -->
         <section id="about">
-            <div class="coming-soon-text">Coming Soon</div>
+            <h2 class="text-5xl font-black mb-8 tracking-tighter uppercase text-center">General Information</h2>
+            <div class="max-w-3xl text-center mb-10">
+                <p class="text-xl text-zinc-300 leading-relaxed">
+                    The primary objective of this website is to raise awareness about common digital scams. We aim to provide the community with the necessary tools to identify malicious activities and prevent users from being scammed or compromised by hackers.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <h3 class="text-red-600 font-bold uppercase tracking-wider mb-2">🛡️ Frequent Scams</h3>
+                <p class="text-zinc-400">This section features detailed information regarding the most prevalent scams today, along with essential tips on how to identify them before it's too late.</p>
+            </div>
+
+            <div class="info-card">
+                <h3 class="text-red-600 font-bold uppercase tracking-wider mb-2">💬 Frequent Discord scam messages</h3>
+                <p class="text-zinc-400">Here you will find real-world examples of frequent Discord scam messages. Our goal is to demonstrate exactly how these attempts look so you can recognize and avoid them instantly.</p>
+            </div>
+
+            <div class="info-card">
+                <h3 class="text-red-600 font-bold uppercase tracking-wider mb-2">📺 YouTube Scam Videos</h3>
+                <p class="text-zinc-400">This area highlights deceptive videos and livestreams that use malicious links or false promises (fake giveaways) to lure users into dangerous traps.</p>
+            </div>
         </section>
 
         <section id="frequent">
@@ -239,11 +276,22 @@
             </div>
         </section>
 
-        <!-- Nueva sección: Updates -->
         <section id="updates">
             <h2 class="text-5xl font-black mb-12 tracking-tighter uppercase text-center">Development Updates</h2>
             
             <div class="update-card">
+                <div class="flex items-center mb-4">
+                    <span class="version-badge">v 4.2</span>
+                    <h3 class="text-xl font-bold uppercase">Information Content & Extension</h3>
+                </div>
+                <ul class="text-zinc-400 list-disc list-inside space-y-2">
+                    <li>Completed the "Information" section with professional descriptions.</li>
+                    <li>Extended v4.2: Renamed sub-sections for better consistency with the navigation menu.</li>
+                    <li>Synchronized terminology: Discord Scams is now "Frequent Discord scam messages" and YouTube alerts is now "YouTube Scam Videos".</li>
+                </ul>
+            </div>
+
+            <div class="update-card opacity-80">
                 <div class="flex items-center mb-4">
                     <span class="version-badge">v 4.1</span>
                     <h3 class="text-xl font-bold uppercase">New Updates Section</h3>
@@ -254,37 +302,15 @@
                 </ul>
             </div>
 
-            <div class="update-card opacity-80">
+            <div class="update-card opacity-60">
                 <div class="flex items-center mb-4">
                     <span class="version-badge">v 4.0</span>
                     <h3 class="text-xl font-bold uppercase">Massive Navigation Overhaul</h3>
                 </div>
                 <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Implemented Deep Linking: Users can now share direct URLs to specific sections.</li>
-                    <li>Fixed Browser History: "Back" and "Forward" buttons are now fully functional.</li>
-                    <li>Touch Optimization: Eliminated 300ms lag for mobile and smart display devices.</li>
-                    <li>Enhanced UI: Fixed "active" link highlighting and added logo redirection to Home.</li>
-                </ul>
-            </div>
-
-            <div class="update-card opacity-60">
-                <div class="flex items-center mb-4">
-                    <span class="version-badge">v 3.8</span>
-                    <h3 class="text-xl font-bold uppercase">Compatibility Fix</h3>
-                </div>
-                <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Removed "target=_blank" from external links to prevent crashes on Echo Show devices.</li>
-                </ul>
-            </div>
-
-            <div class="update-card opacity-40">
-                <div class="flex items-center mb-4">
-                    <span class="version-badge">v 3.7</span>
-                    <h3 class="text-xl font-bold uppercase">Renaming & Reorganizing</h3>
-                </div>
-                <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Renamed "About Me" section to "Information".</li>
-                    <li>Reordered navigation buttons: Information is now after Home.</li>
+                    <li>Implemented Deep Linking and Browser History support.</li>
+                    <li>Touch Optimization for mobile and smart displays.</li>
+                    <li>Enhanced UI and logo redirection.</li>
                 </ul>
             </div>
         </section>
@@ -298,13 +324,12 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 4.1 // 2026</p>
+                <p>Mejoradal4 // Version v 4.2 // 2026</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Sistema de navegación avanzado v4.1 (Incluye Updates)
         function showSection(sectionId) {
             const validSections = ['home', 'about', 'frequent', 'discord', 'youtube', 'contacts', 'updates'];
             const activeId = (sectionId && validSections.includes(sectionId)) ? sectionId : 'home';
@@ -333,7 +358,7 @@
         });
 
         window.addEventListener('load', () => {
-            console.log("Scam Preventor v4.1 | Updates Section Live | Developed by Mejoradal4");
+            console.log("Scam Preventor v4.2 | Sub-sections Updated | Developed by Mejoradal4");
             const initialSection = window.location.hash.replace('#', '') || 'home';
             showSection(initialSection);
         });
