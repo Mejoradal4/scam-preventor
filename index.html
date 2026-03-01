@@ -173,7 +173,8 @@
             
             <div class="flex flex-wrap justify-center gap-6" id="nav-container">
                 <div onclick="showSection('home')" class="nav-link active-link" id="link-home">Home</div>
-                <div onclick="showSection('about')" class="nav-link" id="link-about">About Me</div>
+                <!-- Sección renombrada de About Me a Information -->
+                <div onclick="showSection('about')" class="nav-link" id="link-about">Information</div>
                 <div onclick="showSection('frequent')" class="nav-link" id="link-frequent">Frequent Scams</div>
                 <div onclick="showSection('discord')" class="nav-link" id="link-discord">Frequent Discord scam messages</div>
                 <div onclick="showSection('youtube')" class="nav-link" id="link-youtube">YouTube Scam Videos</div>
@@ -189,6 +190,7 @@
             <p class="text-zinc-600 uppercase tracking-widest text-sm text-center">Creation by Mejoradal4</p>
         </section>
 
+        <!-- Identificador mantenido como 'about' internamente para evitar romper enlaces lógicos -->
         <section id="about">
             <div class="coming-soon-text">Coming Soon</div>
         </section>
@@ -231,13 +233,13 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 3.6 // 2026</p>
+                <p>Mejoradal4 // Version v 3.7 // 2026</p>
             </div>
         </div>
     </footer>
 
     <script>
-        console.log("Scam Preventor v3.6 | Scroll Bug Fixed | Developed by Mejoradal4");
+        console.log("Scam Preventor v3.7 | Section renamed to Information | Developed by Mejoradal4");
 
         function showSection(sectionId) {
             // Eliminar clases activas previas
@@ -261,7 +263,7 @@
                 activeNavButton.classList.add('active-link');
             }
 
-            // FIX: Scroll suave con un pequeño retardo para evitar conflictos visuales
+            // Scroll suave con retardo para evitar conflictos visuales
             setTimeout(() => {
                 window.scrollTo({
                     top: 0,
