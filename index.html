@@ -184,9 +184,10 @@
             
             <div class="flex flex-wrap justify-center gap-6" id="nav-container">
                 <div onclick="showSection('home')" class="nav-link active-link" id="link-home">Home</div>
+                <!-- About Me movido después de Home -->
+                <div onclick="showSection('about')" class="nav-link" id="link-about">About Me</div>
                 <div onclick="showSection('frequent')" class="nav-link" id="link-frequent">Frequent Scams</div>
                 <div onclick="showSection('discord')" class="nav-link" id="link-discord">Frequent Discord scam messages</div>
-                <div onclick="showSection('about')" class="nav-link" id="link-about">About Me</div>
                 <div onclick="showSection('youtube')" class="nav-link" id="link-youtube">YouTube Scam Videos</div>
                 <div onclick="showSection('contacts')" class="nav-link" id="link-contacts">Contacts</div>
             </div>
@@ -203,6 +204,10 @@
         </section>
 
         <!-- Secciones Coming Soon -->
+        <section id="about">
+            <div class="coming-soon-text">Coming Soon</div>
+        </section>
+
         <section id="frequent">
             <div class="coming-soon-text text-center">Coming Soon</div>
         </section>
@@ -211,15 +216,11 @@
             <div class="coming-soon-text text-center">Coming Soon</div>
         </section>
 
-        <section id="about">
-            <div class="coming-soon-text">Coming Soon</div>
-        </section>
-
         <section id="youtube">
             <div class="coming-soon-text text-center">Coming Soon</div>
         </section>
 
-        <!-- Sección: Contacts Traducida al Inglés -->
+        <!-- Sección: Contacts -->
         <section id="contacts">
             <div class="contact-card">
                 <h2 class="text-4xl font-bold mb-6 tracking-tight uppercase">The Creators Discord server</h2>
@@ -247,13 +248,13 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 3.4 // 2026</p>
+                <p>Mejoradal4 // Version v 3.5 // 2026</p>
             </div>
         </div>
     </footer>
 
     <script>
-        console.log("Scam Preventor v3.4 | Contacts Section Translated | Developed by Mejoradal4");
+        console.log("Scam Preventor v3.5 | Navigation Order Updated | Developed by Mejoradal4");
 
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(sec => {
@@ -279,3 +280,5 @@
     </script>
 </body>
 </html>
+</html>
+
