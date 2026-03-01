@@ -87,14 +87,18 @@
             font-weight: 700 !important;
         }
 
+        /* Fix CLS: Aspect Ratio and Predefined Max Height */
         .hero-image {
             width: 100%;
             max-width: 600px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
             border-radius: 20px;
             box-shadow: 0 0 60px rgba(255, 0, 0, 0.3);
             border: 2px solid #1a1a1a;
             margin-bottom: 2rem;
             transition: transform 0.3s ease;
+            background: #111; /* Placeholder mientras carga */
         }
 
         .hero-image:hover {
@@ -109,7 +113,6 @@
             text-transform: uppercase;
         }
 
-        /* Estilos para tarjetas informativas */
         .info-card {
             background-color: var(--card-bg);
             border: 1px solid #1a1a1a;
@@ -226,7 +229,6 @@
             <p class="text-zinc-600 uppercase tracking-widest text-sm text-center">Creation by Mejoradal4</p>
         </section>
 
-        <!-- Sección Information actualizada -->
         <section id="about">
             <h2 class="text-5xl font-black mb-8 tracking-tighter uppercase text-center">General Information</h2>
             <div class="max-w-3xl text-center mb-10">
@@ -281,36 +283,34 @@
             
             <div class="update-card">
                 <div class="flex items-center mb-4">
+                    <span class="version-badge">v 4.3</span>
+                    <h3 class="text-xl font-bold uppercase">Performance & Stability</h3>
+                </div>
+                <ul class="text-zinc-400 list-disc list-inside space-y-2">
+                    <li>Fixed Cumulative Layout Shift (CLS) by defining aspect-ratios for hero images.</li>
+                    <li>Resolved Race Condition: Navigation now prioritizes immediate hash-detection on DOM load.</li>
+                    <li>Optimized scroll-to-top behavior for high-refresh-rate screens and Echo Show compatibility.</li>
+                </ul>
+            </div>
+
+            <div class="update-card opacity-80">
+                <div class="flex items-center mb-4">
                     <span class="version-badge">v 4.2</span>
                     <h3 class="text-xl font-bold uppercase">Information Content & Extension</h3>
                 </div>
                 <ul class="text-zinc-400 list-disc list-inside space-y-2">
                     <li>Completed the "Information" section with professional descriptions.</li>
-                    <li>Extended v4.2: Renamed sub-sections for better consistency with the navigation menu.</li>
-                    <li>Synchronized terminology: Discord Scams is now "Frequent Discord scam messages" and YouTube alerts is now "YouTube Scam Videos".</li>
+                    <li>Synchronized terminology with navigation menu items for consistency.</li>
                 </ul>
             </div>
 
-            <div class="update-card opacity-80">
+            <div class="update-card opacity-60">
                 <div class="flex items-center mb-4">
                     <span class="version-badge">v 4.1</span>
                     <h3 class="text-xl font-bold uppercase">New Updates Section</h3>
                 </div>
                 <ul class="text-zinc-400 list-disc list-inside space-y-2">
                     <li>Added the official "Updates" section to track website development.</li>
-                    <li>Reorganized navigation menu for better accessibility.</li>
-                </ul>
-            </div>
-
-            <div class="update-card opacity-60">
-                <div class="flex items-center mb-4">
-                    <span class="version-badge">v 4.0</span>
-                    <h3 class="text-xl font-bold uppercase">Massive Navigation Overhaul</h3>
-                </div>
-                <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Implemented Deep Linking and Browser History support.</li>
-                    <li>Touch Optimization for mobile and smart displays.</li>
-                    <li>Enhanced UI and logo redirection.</li>
                 </ul>
             </div>
         </section>
@@ -324,41 +324,45 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 4.2 // 2026</p>
+                <p>Mejoradal4 // Version v 4.3 // 2026</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Sistema de navegación v4.3 - Estabilidad Reforzada
         function showSection(sectionId) {
             const validSections = ['home', 'about', 'frequent', 'discord', 'youtube', 'contacts', 'updates'];
             const activeId = (sectionId && validSections.includes(sectionId)) ? sectionId : 'home';
 
+            // Reset UI
             document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-link'));
 
+            // Set Active
             const targetSection = document.getElementById(activeId);
             if(targetSection) targetSection.classList.add('active');
 
             const activeNavButton = document.getElementById('link-' + activeId);
             if(activeNavButton) activeNavButton.classList.add('active-link');
 
-            setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 50);
+            // Scroll Top Fix (Ensures absolute 0,0)
+            window.scrollTo({ top: 0, behavior: 'auto' });
         }
 
         function navigateTo(sectionId) {
             window.location.hash = sectionId;
         }
 
+        // Listener para cambios de Hash
         window.addEventListener('hashchange', () => {
             const sectionId = window.location.hash.replace('#', '');
             showSection(sectionId);
         });
 
-        window.addEventListener('load', () => {
-            console.log("Scam Preventor v4.2 | Sub-sections Updated | Developed by Mejoradal4");
+        // DOMContentLoaded es más rápido que 'load' para evitar el parpadeo inicial
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Scam Preventor v4.3 | Stability Patch Active | Developed by Mejoradal4");
             const initialSection = window.location.hash.replace('#', '') || 'home';
             showSection(initialSection);
         });
