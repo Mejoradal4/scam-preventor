@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scam Preventor - Mejoradal4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --bg-dark: #050505;
+            --card-bg: #0f0f0f;
+            --accent-red: #FF0000;
+            --text-main: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navegación estática para no tapar contenido en dispositivos pequeños */
+        nav {
+            width: 100%;
+            background-color: #000;
+            border-bottom: 1px solid #1a1a1a;
+            flex-shrink: 0;
+            position: relative;
+            top: 0;
+            z-index: 50;
+        }
+
+        .content-area {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section {
+            display: none;
+            width: 100%;
+            min-height: 80vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-link {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #666;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 400;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link.active-link {
+            color: var(--accent-red) !important;
+            opacity: 1 !important;
+            font-weight: 700 !important;
+        }
+
+        /* Estilo para la imagen oficial */
+        .hero-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 0 60px rgba(255, 0, 0, 0.3);
+            border: 2px solid #1a1a1a;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        .coming-soon-text {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: #1a1a1a;
+            text-transform: uppercase;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        .alert-text {
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            line-height: 1.6;
+        }
+
+        .highlight-red {
+            color: var(--accent-red);
+            font-weight: 800;
+            text-decoration: underline;
+        }
+
+        .highlight-white {
+            color: #fff;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav>
+        <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-xl font-bold tracking-tighter uppercase">
+                <span class="text-red-600">!!</span> Scam Preventor <span class="text-zinc-500 font-light">| Mejoradal4</span>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6" id="nav-container">
+                <div onclick="showSection('home')" class="nav-link active-link" id="link-home">Home</div>
+                <div onclick="showSection('frequent')" class="nav-link" id="link-frequent">Frequent Scams</div>
+                <div onclick="showSection('discord')" class="nav-link" id="link-discord">Discord Links</div>
+                <div onclick="showSection('about')" class="nav-link" id="link-about">About Me</div>
+                <div onclick="showSection('youtube')" class="nav-link" id="link-youtube">YouTube Scam Videos</div>
+                <div onclick="showSection('contacts')" class="nav-link" id="link-contacts">Contacts</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Área de Contenido Principal -->
+    <div class="content-area">
+        <!-- Sección: Home -->
+        <section id="home" class="active">
+            <!-- Imagen cargada desde tu GitHub personal -->
+            <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Escudo de segurança com X protegendo contra hackers]" class="hero-image">
+            <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter uppercase">Welcome.</h1>
+            <p class="text-zinc-600 uppercase tracking-widest text-sm text-center">Creation by Mejoradal4</p>
+        </section>
+
+        <!-- Secciones Coming Soon -->
+        <section id="frequent">
+            <div class="coming-soon-text text-center">Coming Soon</div>
+        </section>
+
+        <section id="discord">
+            <div class="coming-soon-text">Coming Soon</div>
+        </section>
+
+        <section id="about">
+            <div class="coming-soon-text">Coming Soon</div>
+        </section>
+
+        <section id="youtube">
+            <div class="coming-soon-text text-center">Coming Soon</div>
+        </section>
+
+        <section id="contacts">
+            <div class="coming-soon-text">Coming Soon</div>
+        </section>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="p-16 text-center border-t border-zinc-900 bg-black">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="alert-text uppercase text-zinc-400">
+                This web is to <span class="highlight-white">PREVENT SCAMS</span> and is 
+                <span class="highlight-red">NOT TO PROMOTE</span> scamming
+            </div>
+            
+            <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
+                <p>Mejoradal4 // Version v 3.1 // 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        console.log("Scam Preventor v3.1 | Imagem oficial integrada | Desenvolvido por Mejoradal4");
+
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active-link');
+            });
+
+            const targetSection = document.getElementById(sectionId);
+            if(targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            const activeNavButton = document.getElementById('link-' + sectionId);
+            if(activeNavButton) {
+                activeNavButton.classList.add('active-link');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
