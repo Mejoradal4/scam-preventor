@@ -25,7 +25,7 @@
             min-height: 100vh;
         }
 
-        /* Navegación estática para no tapar contenido en dispositivos pequeños */
+        /* Navegación estática */
         nav {
             width: 100%;
             background-color: #000;
@@ -85,7 +85,6 @@
             font-weight: 700 !important;
         }
 
-        /* Estilo para la imagen oficial */
         .hero-image {
             width: 100%;
             max-width: 600px;
@@ -108,7 +107,6 @@
             text-transform: uppercase;
         }
 
-        /* Estilos específicos para la sección de Contactos */
         .contact-card {
             background-color: var(--card-bg);
             border: 1px solid #1a1a1a;
@@ -131,10 +129,6 @@
             text-transform: none;
         }
 
-        .discord-btn:hover {
-            opacity: 0.9;
-        }
-
         .hub-btn {
             display: inline-block;
             background-color: #ffffff;
@@ -145,10 +139,6 @@
             margin: 0.5rem;
             transition: background-color 0.2s;
             text-transform: none;
-        }
-
-        .hub-btn:hover {
-            background-color: #e2e8f0;
         }
 
         footer {
@@ -175,7 +165,6 @@
 </head>
 <body>
 
-    <!-- Navegación -->
     <nav>
         <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-xl font-bold tracking-tighter uppercase">
@@ -184,7 +173,6 @@
             
             <div class="flex flex-wrap justify-center gap-6" id="nav-container">
                 <div onclick="showSection('home')" class="nav-link active-link" id="link-home">Home</div>
-                <!-- About Me movido después de Home -->
                 <div onclick="showSection('about')" class="nav-link" id="link-about">About Me</div>
                 <div onclick="showSection('frequent')" class="nav-link" id="link-frequent">Frequent Scams</div>
                 <div onclick="showSection('discord')" class="nav-link" id="link-discord">Frequent Discord scam messages</div>
@@ -194,16 +182,13 @@
         </div>
     </nav>
 
-    <!-- Área de Contenido Principal -->
     <div class="content-area">
-        <!-- Sección: Home -->
         <section id="home" class="active">
             <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Escudo de seguridad protegiendo contra hackers]" class="hero-image">
             <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter uppercase">Welcome.</h1>
             <p class="text-zinc-600 uppercase tracking-widest text-sm text-center">Creation by Mejoradal4</p>
         </section>
 
-        <!-- Secciones Coming Soon -->
         <section id="about">
             <div class="coming-soon-text">Coming Soon</div>
         </section>
@@ -220,7 +205,6 @@
             <div class="coming-soon-text text-center">Coming Soon</div>
         </section>
 
-        <!-- Sección: Contacts -->
         <section id="contacts">
             <div class="contact-card">
                 <h2 class="text-4xl font-bold mb-6 tracking-tight uppercase">The Creators Discord server</h2>
@@ -239,7 +223,6 @@
         </section>
     </div>
 
-    <!-- Pie de página -->
     <footer class="p-16 text-center border-t border-zinc-900 bg-black">
         <div class="max-w-4xl mx-auto space-y-6">
             <div class="alert-text uppercase text-zinc-400">
@@ -248,15 +231,16 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 3.5 // 2026</p>
+                <p>Mejoradal4 // Version v 3.6 // 2026</p>
             </div>
         </div>
     </footer>
 
     <script>
-        console.log("Scam Preventor v3.5 | Navigation Order Updated | Developed by Mejoradal4");
+        console.log("Scam Preventor v3.6 | Scroll Bug Fixed | Developed by Mejoradal4");
 
         function showSection(sectionId) {
+            // Eliminar clases activas previas
             document.querySelectorAll('section').forEach(sec => {
                 sec.classList.remove('active');
             });
@@ -265,20 +249,26 @@
                 link.classList.remove('active-link');
             });
 
+            // Activar nueva sección
             const targetSection = document.getElementById(sectionId);
             if(targetSection) {
                 targetSection.classList.add('active');
             }
 
+            // Activar botón del menú
             const activeNavButton = document.getElementById('link-' + sectionId);
             if(activeNavButton) {
                 activeNavButton.classList.add('active-link');
             }
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // FIX: Scroll suave con un pequeño retardo para evitar conflictos visuales
+            setTimeout(() => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 10);
         }
     </script>
 </body>
 </html>
-</html>
-
