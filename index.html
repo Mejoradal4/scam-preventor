@@ -25,15 +25,15 @@
             min-height: 100vh;
         }
 
-        /* Navegación estática */
+        /* Navegación mejorada con sticky */
         nav {
             width: 100%;
             background-color: #000;
             border-bottom: 1px solid #1a1a1a;
             flex-shrink: 0;
-            position: relative;
+            position: sticky;
             top: 0;
-            z-index: 50;
+            z-index: 100;
         }
 
         .content-area {
@@ -73,6 +73,8 @@
             cursor: pointer;
             white-space: nowrap;
             font-weight: 400;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .nav-link:hover {
@@ -126,11 +128,6 @@
             font-weight: 600;
             margin: 0.5rem;
             transition: opacity 0.2s;
-            text-transform: none;
-        }
-
-        .discord-btn:hover {
-            opacity: 0.9;
         }
 
         .hub-btn {
@@ -142,11 +139,6 @@
             font-weight: 600;
             margin: 0.5rem;
             transition: background-color 0.2s;
-            text-transform: none;
-        }
-
-        .hub-btn:hover {
-            background-color: #e2e8f0;
         }
 
         footer {
@@ -175,23 +167,23 @@
 
     <nav>
         <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-xl font-bold tracking-tighter uppercase">
+            <div class="text-xl font-bold tracking-tighter uppercase cursor-pointer" onclick="navigateTo('home')">
                 <span class="text-red-600">!!</span> Scam Preventor <span class="text-zinc-500 font-light">| Mejoradal4</span>
             </div>
             
             <div class="flex flex-wrap justify-center gap-6" id="nav-container">
-                <div onclick="showSection('home')" class="nav-link active-link" id="link-home">Home</div>
-                <div onclick="showSection('about')" class="nav-link" id="link-about">Information</div>
-                <div onclick="showSection('frequent')" class="nav-link" id="link-frequent">Frequent Scams</div>
-                <div onclick="showSection('discord')" class="nav-link" id="link-discord">Frequent Discord scam messages</div>
-                <div onclick="showSection('youtube')" class="nav-link" id="link-youtube">YouTube Scam Videos</div>
-                <div onclick="showSection('contacts')" class="nav-link" id="link-contacts">Contacts</div>
+                <div onclick="navigateTo('home')" class="nav-link" id="link-home">Home</div>
+                <div onclick="navigateTo('about')" class="nav-link" id="link-about">Information</div>
+                <div onclick="navigateTo('frequent')" class="nav-link" id="link-frequent">Frequent Scams</div>
+                <div onclick="navigateTo('discord')" class="nav-link" id="link-discord">Frequent Discord scam messages</div>
+                <div onclick="navigateTo('youtube')" class="nav-link" id="link-youtube">YouTube Scam Videos</div>
+                <div onclick="navigateTo('contacts')" class="nav-link" id="link-contacts">Contacts</div>
             </div>
         </div>
     </nav>
 
     <div class="content-area">
-        <section id="home" class="active">
+        <section id="home">
             <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Escudo de seguridad protegiendo contra hackers]" class="hero-image">
             <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter uppercase">Welcome.</h1>
             <p class="text-zinc-600 uppercase tracking-widest text-sm text-center">Creation by Mejoradal4</p>
@@ -220,13 +212,8 @@
                     This is my official Discord server. A space dedicated to the <span class="text-white font-semibold">Roblox</span> community, where you can chat with other players, look for <span class="text-white font-semibold">developers</span> for your projects, and much more.
                 </p>
                 <div class="flex flex-wrap justify-center gap-2">
-                    <!-- FIX: Se ha eliminado target="_blank" para mejorar compatibilidad con Echo Show -->
-                    <a href="https://discord.com/invite/gE7CETrNEk" class="discord-btn">
-                        Join Discord Server
-                    </a>
-                    <a href="https://discordbotlist.com/servers/the-creators-6858" class="hub-btn">
-                        Creator Hub
-                    </a>
+                    <a href="https://discord.com/invite/gE7CETrNEk" class="discord-btn">Join Discord Server</a>
+                    <a href="https://discordbotlist.com/servers/the-creators-6858" class="hub-btn">Creator Hub</a>
                 </div>
             </div>
         </section>
@@ -240,40 +227,55 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 3.8 // 2026</p>
+                <p>Mejoradal4 // Version v 4.0 // 2026</p>
             </div>
         </div>
     </footer>
 
     <script>
-        console.log("Scam Preventor v3.8 | Link Compatibility Fix | Developed by Mejoradal4");
-
+        // Sistema de navegación avanzado v4.0 (Deep Linking incluido)
         function showSection(sectionId) {
-            document.querySelectorAll('section').forEach(sec => {
-                sec.classList.remove('active');
-            });
+            const validSections = ['home', 'about', 'frequent', 'discord', 'youtube', 'contacts'];
+            // Si el hash está vacío o no es válido, por defecto vamos a home
+            const activeId = (sectionId && validSections.includes(sectionId)) ? sectionId : 'home';
+
+            // Ocultar todas las secciones
+            document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
             
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active-link');
-            });
+            // Desmarcar todos los enlaces de navegación
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-link'));
 
-            const targetSection = document.getElementById(sectionId);
-            if(targetSection) {
-                targetSection.classList.add('active');
-            }
+            // Activar la sección objetivo
+            const targetSection = document.getElementById(activeId);
+            if(targetSection) targetSection.classList.add('active');
 
-            const activeNavButton = document.getElementById('link-' + sectionId);
-            if(activeNavButton) {
-                activeNavButton.classList.add('active-link');
-            }
+            // Resaltar el botón del menú
+            const activeNavButton = document.getElementById('link-' + activeId);
+            if(activeNavButton) activeNavButton.classList.add('active-link');
 
+            // Scroll suave a la parte superior (FIX para sincronización)
             setTimeout(() => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }, 10);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 50);
         }
+
+        // Función para cambiar el Hash en la URL
+        function navigateTo(sectionId) {
+            window.location.hash = sectionId;
+        }
+
+        // EVENTO: Detectar cambios en la URL (Deep Linking y botones Atrás/Adelante)
+        window.addEventListener('hashchange', () => {
+            const sectionId = window.location.hash.replace('#', '');
+            showSection(sectionId);
+        });
+
+        // EVENTO: Carga inicial para detectar enlaces directos
+        window.addEventListener('load', () => {
+            console.log("Scam Preventor v4.0 | Routing & Hash Logic Active | Developed by Mejoradal4");
+            const initialSection = window.location.hash.replace('#', '') || 'home';
+            showSection(initialSection);
+        });
     </script>
 </body>
 </html>
