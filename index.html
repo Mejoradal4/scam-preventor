@@ -108,6 +108,49 @@
             text-transform: uppercase;
         }
 
+        /* Estilos específicos para la sección de Contactos */
+        .contact-card {
+            background-color: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            border-radius: 1.5rem;
+            padding: 3rem;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .discord-btn {
+            display: inline-block;
+            background-color: #5865F2;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: opacity 0.2s;
+            text-transform: none;
+        }
+
+        .discord-btn:hover {
+            opacity: 0.9;
+        }
+
+        .hub-btn {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: background-color 0.2s;
+            text-transform: none;
+        }
+
+        .hub-btn:hover {
+            background-color: #e2e8f0;
+        }
+
         footer {
             margin-top: auto;
         }
@@ -142,7 +185,6 @@
             <div class="flex flex-wrap justify-center gap-6" id="nav-container">
                 <div onclick="showSection('home')" class="nav-link active-link" id="link-home">Home</div>
                 <div onclick="showSection('frequent')" class="nav-link" id="link-frequent">Frequent Scams</div>
-                <!-- Sección renombrada a petición del usuario -->
                 <div onclick="showSection('discord')" class="nav-link" id="link-discord">Frequent Discord scam messages</div>
                 <div onclick="showSection('about')" class="nav-link" id="link-about">About Me</div>
                 <div onclick="showSection('youtube')" class="nav-link" id="link-youtube">YouTube Scam Videos</div>
@@ -155,7 +197,6 @@
     <div class="content-area">
         <!-- Sección: Home -->
         <section id="home" class="active">
-            <!-- Imagen oficial cargada desde GitHub -->
             <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Escudo de seguridad protegiendo contra hackers]" class="hero-image">
             <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter uppercase">Welcome.</h1>
             <p class="text-zinc-600 uppercase tracking-widest text-sm text-center">Creation by Mejoradal4</p>
@@ -178,8 +219,22 @@
             <div class="coming-soon-text text-center">Coming Soon</div>
         </section>
 
+        <!-- Sección: Contacts Traducida al Inglés -->
         <section id="contacts">
-            <div class="coming-soon-text">Coming Soon</div>
+            <div class="contact-card">
+                <h2 class="text-4xl font-bold mb-6 tracking-tight uppercase">The Creators Discord server</h2>
+                <p class="text-zinc-400 mb-8 text-lg leading-relaxed">
+                    This is my official Discord server. A space dedicated to the <span class="text-white font-semibold">Roblox</span> community, where you can chat with other players, look for <span class="text-white font-semibold">developers</span> for your projects, and much more.
+                </p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <a href="https://discord.com/invite/gE7CETrNEk" target="_blank" class="discord-btn">
+                        Join Discord Server
+                    </a>
+                    <a href="https://discordbotlist.com/servers/the-creators-6858" target="_blank" class="hub-btn">
+                        Creator Hub
+                    </a>
+                </div>
+            </div>
         </section>
     </div>
 
@@ -192,13 +247,13 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 3.2 // 2026</p>
+                <p>Mejoradal4 // Version v 3.4 // 2026</p>
             </div>
         </div>
     </footer>
 
     <script>
-        console.log("Scam Preventor v3.2 | Secciones actualizadas | Desarrollado por Mejoradal4");
+        console.log("Scam Preventor v3.4 | Contacts Section Translated | Developed by Mejoradal4");
 
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(sec => {
