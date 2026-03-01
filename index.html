@@ -25,7 +25,6 @@
             min-height: 100vh;
         }
 
-        /* Navegación mejorada con sticky */
         nav {
             width: 100%;
             background-color: #000;
@@ -40,7 +39,7 @@
             flex-grow: 1;
             position: relative;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
         }
 
@@ -51,7 +50,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 4rem 2rem;
             animation: fadeIn 0.4s ease-out forwards;
         }
 
@@ -87,7 +86,6 @@
             font-weight: 700 !important;
         }
 
-        /* Fix CLS: Aspect Ratio and Predefined Max Height */
         .hero-image {
             width: 100%;
             max-width: 600px;
@@ -98,7 +96,7 @@
             border: 2px solid #1a1a1a;
             margin-bottom: 2rem;
             transition: transform 0.3s ease;
-            background: #111; /* Placeholder mientras carga */
+            background: #111; 
         }
 
         .hero-image:hover {
@@ -131,11 +129,41 @@
         .update-card {
             background-color: var(--card-bg);
             border: 1px solid #1a1a1a;
-            border-radius: 1.5rem;
-            padding: 2rem;
+            border-radius: 1rem;
             max-width: 800px;
             width: 100%;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .update-card:hover {
+            border-color: #FF0000;
+            transform: translateX(5px);
+        }
+
+        details summary {
+            padding: 1.25rem 2rem;
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid #1a1a1a;
+            background: rgba(255, 0, 0, 0.05);
+        }
+
+        .update-content {
+            padding: 1.5rem 2rem;
+            background: #0a0a0a;
         }
 
         .version-badge {
@@ -145,7 +173,7 @@
             border-radius: 0.4rem;
             font-size: 0.7rem;
             font-weight: 800;
-            margin-right: 0.5rem;
+            margin-right: 0.75rem;
         }
 
         .contact-card {
@@ -200,6 +228,48 @@
             color: #fff;
             font-weight: 800;
         }
+
+        .suggestion-input {
+            background: #000;
+            border: 1px solid #333;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            resize: none;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .suggestion-input:focus { border-color: var(--accent-red); }
+        .btn-send {
+            background: var(--accent-red);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .suggestion-item {
+            background: #0a0a0a;
+            border-left: 4px solid #333;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            text-align: left;
+        }
+        .admin-btn { font-size: 0.65rem; color: #555; margin-right: 0.5rem; cursor: pointer; }
+        .admin-btn:hover { color: var(--accent-red); }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -218,13 +288,14 @@
                 <div onclick="navigateTo('youtube')" class="nav-link" id="link-youtube">YouTube Scam Videos</div>
                 <div onclick="navigateTo('contacts')" class="nav-link" id="link-contacts">Contacts</div>
                 <div onclick="navigateTo('updates')" class="nav-link" id="link-updates">Updates</div>
+                <div onclick="navigateTo('suggestions')" class="nav-link" id="link-suggestions">Suggestions</div>
             </div>
         </div>
     </nav>
 
     <div class="content-area">
         <section id="home">
-            <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Imagen de un escudo de seguridad]" class="hero-image">
+            <img src="https://raw.githubusercontent.com/Mejoradal4/mi-web-assets/main/Imagen%20para%20pagina%20web.png" alt="[Imagen de escudo de seguridad]" class="hero-image">
             <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter uppercase">Welcome.</h1>
             <p class="text-zinc-600 uppercase tracking-widest text-sm text-center">Creation by Mejoradal4</p>
         </section>
@@ -278,77 +349,213 @@
             </div>
         </section>
 
-        <!-- Sección Updates Restaurada y Completa -->
         <section id="updates">
             <h2 class="text-5xl font-black mb-12 tracking-tighter uppercase text-center">Development Updates</h2>
             
-            <div class="update-card">
-                <div class="flex items-center mb-4">
-                    <span class="version-badge">v 4.3</span>
-                    <h3 class="text-xl font-bold uppercase">Performance & Stability</h3>
-                </div>
-                <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Fixed Cumulative Layout Shift (CLS) by defining aspect-ratios for hero images.</li>
-                    <li>Resolved Race Condition: Navigation now prioritizes immediate hash-detection on DOM load.</li>
-                    <li>Optimized scroll-to-top behavior for high-refresh-rate screens and Echo Show compatibility.</li>
-                </ul>
+            <!-- v 4.5 -->
+            <div class="update-card border-red-600">
+                <details>
+                    <summary>
+                        <div class="flex items-center">
+                            <span class="version-badge">v 4.5</span>
+                            <span class="font-bold uppercase tracking-tight text-sm">Interactive UX & Versioning Policy</span>
+                        </div>
+                        <span class="text-zinc-600 text-xs">▼</span>
+                    </summary>
+                    <div class="update-content">
+                        <ul class="text-zinc-400 list-disc list-inside space-y-2 text-sm">
+                            <li class="text-white font-bold">New Dynamic: Every future change will now increment the version and auto-log here.</li>
+                            <li class="text-white font-bold">UX Improvement: Added hover scale effects to update cards for better feedback.</li>
+                            <li>Interactive Nav: Links now respond with a "flash" effect when clicked to confirm interaction.</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
 
+            <!-- v 4.4 -->
+            <div class="update-card opacity-95">
+                <details>
+                    <summary>
+                        <div class="flex items-center">
+                            <span class="version-badge">v 4.4</span>
+                            <span class="font-bold uppercase tracking-tight text-sm">Enhanced Suggestions & Rules</span>
+                        </div>
+                        <span class="text-zinc-600 text-xs">▼</span>
+                    </summary>
+                    <div class="update-content">
+                        <ul class="text-zinc-400 list-disc list-inside space-y-2 text-sm">
+                            <li class="text-white font-bold">Added "Information" sub-section in Suggestions Hub.</li>
+                            <li class="text-white font-bold">Added "Rules" sub-section for community safety.</li>
+                            <li>Reorganized Navigation: "Suggestions" is now the final item.</li>
+                            <li>Visual UI Refinement: Added red accent borders to verification systems.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- v 4.3 -->
             <div class="update-card opacity-90">
-                <div class="flex items-center mb-4">
-                    <span class="version-badge">v 4.2</span>
-                    <h3 class="text-xl font-bold uppercase">Information Content & Extension</h3>
-                </div>
-                <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Completed the "Information" section with professional descriptions.</li>
-                    <li>Extended v4.2: Renamed sub-sections for better consistency with the navigation menu.</li>
-                    <li>Synchronized terminology: Discord Scams is now "Frequent Discord scam messages" and YouTube alerts is now "YouTube Scam Videos".</li>
-                </ul>
+                <details>
+                    <summary>
+                        <div class="flex items-center">
+                            <span class="version-badge">v 4.3</span>
+                            <span class="font-bold uppercase tracking-tight text-sm">Stability & Community Features</span>
+                        </div>
+                        <span class="text-zinc-600 text-xs">▼</span>
+                    </summary>
+                    <div class="update-content">
+                        <ul class="text-zinc-400 list-disc list-inside space-y-2 text-sm">
+                            <li class="text-white font-bold">Added "Suggestions" section with real-time Cloud system.</li>
+                            <li>Fixed Cumulative Layout Shift (CLS) in hero images.</li>
+                            <li>Resolved Navigation Race Condition on DOM load.</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
 
+            <!-- v 4.2 -->
+            <div class="update-card opacity-85">
+                <details>
+                    <summary>
+                        <div class="flex items-center">
+                            <span class="version-badge">v 4.2</span>
+                            <span class="font-bold uppercase tracking-tight text-sm">Information Content Extension</span>
+                        </div>
+                        <span class="text-zinc-600 text-xs">▼</span>
+                    </summary>
+                    <div class="update-content">
+                        <ul class="text-zinc-400 list-disc list-inside space-y-2 text-sm">
+                            <li>Renamed sections: "Frequent Discord scam messages" and "YouTube Scam Videos".</li>
+                            <li>Completed professional descriptions in "Information" section.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- v 4.1 -->
             <div class="update-card opacity-80">
-                <div class="flex items-center mb-4">
-                    <span class="version-badge">v 4.1</span>
-                    <h3 class="text-xl font-bold uppercase">New Updates Section</h3>
-                </div>
-                <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Added the official "Updates" section to track website development history.</li>
-                    <li>Reorganized navigation menu for better accessibility.</li>
-                </ul>
+                <details>
+                    <summary>
+                        <div class="flex items-center">
+                            <span class="version-badge">v 4.1</span>
+                            <span class="font-bold uppercase tracking-tight text-sm">Tracking History</span>
+                        </div>
+                        <span class="text-zinc-600 text-xs">▼</span>
+                    </summary>
+                    <div class="update-content">
+                        <ul class="text-zinc-400 list-disc list-inside space-y-2 text-sm">
+                            <li>Added the official "Updates" section to the main navigation.</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
 
+            <!-- v 4.0 -->
+            <div class="update-card opacity-75">
+                <details>
+                    <summary>
+                        <div class="flex items-center">
+                            <span class="version-badge">v 4.0</span>
+                            <span class="font-bold uppercase tracking-tight text-sm">The Architecture Overhaul</span>
+                        </div>
+                        <span class="text-zinc-600 text-xs">▼</span>
+                    </summary>
+                    <div class="update-content">
+                        <ul class="text-zinc-400 list-disc list-inside space-y-2 text-sm">
+                            <li>Implemented URL Hash Navigation for browser history support.</li>
+                            <li>Optimized touch responsiveness for mobile and smart displays.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- v 3.5 -->
             <div class="update-card opacity-70">
-                <div class="flex items-center mb-4">
-                    <span class="version-badge">v 4.0</span>
-                    <h3 class="text-xl font-bold uppercase">Massive Navigation Overhaul</h3>
-                </div>
-                <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Implemented Deep Linking: Share direct links to any section via URL hashes.</li>
-                    <li>Fixed Browser History: "Back" and "Forward" buttons are now synchronized.</li>
-                    <li>Touch Optimization: Eliminated lag for mobile and smart display devices.</li>
-                    <li>Enhanced UI: Fixed active link highlighting and added logo redirection.</li>
-                </ul>
+                <details>
+                    <summary>
+                        <div class="flex items-center">
+                            <span class="version-badge">v 3.5</span>
+                            <span class="font-bold uppercase tracking-tight text-sm">Social Hub & Assets</span>
+                        </div>
+                        <span class="text-zinc-600 text-xs">▼</span>
+                    </summary>
+                    <div class="update-content">
+                        <ul class="text-zinc-400 list-disc list-inside space-y-2 text-sm">
+                            <li>Integrated "The Creators" server link and Creator Hub button.</li>
+                            <li>Migrated assets to GitHub for better cross-device loading.</li>
+                            <li>Added dedicated Footer with mission statement.</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
 
-            <div class="update-card opacity-60">
-                <div class="flex items-center mb-4">
-                    <span class="version-badge">v 3.8</span>
-                    <h3 class="text-xl font-bold uppercase">Compatibility Fix</h3>
+            <!-- v 3.0 -->
+            <div class="update-card opacity-65">
+                <details>
+                    <summary>
+                        <div class="flex items-center">
+                            <span class="version-badge">v 3.0</span>
+                            <span class="font-bold uppercase tracking-tight text-sm">Visual Identity & Dark Mode</span>
+                        </div>
+                        <span class="text-zinc-600 text-xs">▼</span>
+                    </summary>
+                    <div class="update-content">
+                        <ul class="text-zinc-400 list-disc list-inside space-y-2 text-sm">
+                            <li>Transitioned to Space Grotesk typography.</li>
+                            <li>Implemented Dark Mode with #FF0000 accents.</li>
+                            <li>Developed first Information cards for awareness.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="suggestions">
+            <h2 class="text-5xl font-black mb-12 tracking-tighter uppercase text-center">Suggestions Hub</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-6xl mb-8">
+                <div class="info-card h-full">
+                    <h3 class="text-red-600 font-bold uppercase tracking-wider mb-4 flex items-center">
+                        <span class="mr-2">ℹ️</span> Information
+                    </h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        This section is designed for the community to actively participate in the growth of <span class="text-white">Scam Preventor</span>. Your ideas help us identify new types of digital threats and improve our educational content. Every suggestion is reviewed by our team to maintain the quality of the information provided.
+                    </p>
                 </div>
-                <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Removed "target=_blank" from external links to prevent crashes on Echo Show devices.</li>
-                </ul>
+
+                <div class="info-card h-full">
+                    <h3 class="text-red-600 font-bold uppercase tracking-wider mb-4 flex items-center">
+                        <span class="mr-2">⚖️</span> Rules
+                    </h3>
+                    <ul class="text-zinc-500 text-xs space-y-2 list-disc list-inside">
+                        <li>Maintain respect towards all community members.</li>
+                        <li>Do not share links to actual malicious sites (provide descriptions only).</li>
+                        <li>Avoid spam or redundant suggestions.</li>
+                        <li>English is the primary language for public suggestions.</li>
+                        <li class="text-red-900 font-bold italic">Violation of these rules will result in a permanent access restriction.</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="update-card opacity-50">
-                <div class="flex items-center mb-4">
-                    <span class="version-badge">v 3.7</span>
-                    <h3 class="text-xl font-bold uppercase">Renaming & Reorganizing</h3>
+            <div class="info-card bg-zinc-950/30 border-red-900/20">
+                <div id="auth-status" class="text-[10px] text-zinc-600 mb-4 uppercase tracking-widest">Connecting to Cloud...</div>
+                
+                <div id="suggestion-form" class="space-y-4">
+                    <textarea id="msg-input" class="suggestion-input h-32" placeholder="Describe the scam or improvement you want to suggest..."></textarea>
+                    
+                    <div class="bg-black p-3 border border-zinc-900 rounded flex items-center justify-between">
+                        <span class="text-xs text-zinc-400 uppercase font-bold tracking-tighter">Verification Code: <b id="captcha-text" class="text-red-600 ml-2"></b></span>
+                        <input type="text" id="captcha-input" class="bg-zinc-900 border border-zinc-800 text-white text-xs p-1 w-20 rounded text-center font-mono" placeholder="CODE">
+                    </div>
+
+                    <button onclick="window.handleSendSuggestion()" class="btn-send w-full hover:bg-red-700 transition-colors">Submit Suggestion</button>
                 </div>
-                <ul class="text-zinc-400 list-disc list-inside space-y-2">
-                    <li>Renamed "About Me" section to "Information".</li>
-                    <li>Reordered navigation buttons: Information is now after Home.</li>
-                </ul>
+
+                <div class="mt-12 pt-8 border-t border-zinc-900">
+                    <h4 class="text-zinc-500 text-[10px] uppercase tracking-widest mb-6 font-bold">Community Feed</h4>
+                    <div id="messages-list" class="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -361,29 +568,126 @@
             </div>
             
             <div class="text-[10px] text-zinc-600 tracking-[0.3em] uppercase space-y-2 font-medium">
-                <p>Mejoradal4 // Version v 4.3 // 2026</p>
+                <p>Mejoradal4 // Version v 4.5 // 2026</p>
             </div>
         </div>
     </footer>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, doc, deleteDoc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'scam-preventor-v4';
+
+        let currentUser = null;
+        let isBanned = false;
+        let currentCaptcha = "";
+
+        function refreshCaptcha() {
+            currentCaptcha = Math.random().toString(36).substring(2, 6).toUpperCase();
+            const el = document.getElementById('captcha-text');
+            if(el) el.innerText = currentCaptcha;
+        }
+
+        const initAuth = async () => {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+        };
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                const statusEl = document.getElementById('auth-status');
+                if(statusEl) statusEl.innerText = `SESSION: ${user.uid}`;
+                
+                const banRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'main');
+                const banDoc = await getDoc(banRef);
+                if (banDoc.exists() && banDoc.data().banned) {
+                    isBanned = true;
+                    const formEl = document.getElementById('suggestion-form');
+                    if(formEl) formEl.innerHTML = "<div class='bg-red-950/20 border border-red-900 p-8 rounded-xl text-center'><p class='text-red-600 font-bold uppercase tracking-widest'>Access Restricted</p><p class='text-zinc-600 text-[10px] mt-2'>Your account has been restricted due to a policy violation.</p></div>";
+                }
+                loadMessages();
+            } else {
+                initAuth();
+            }
+        });
+
+        function loadMessages() {
+            const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'suggestions'));
+            onSnapshot(q, (snapshot) => {
+                const list = document.getElementById('messages-list');
+                if(!list) return;
+                list.innerHTML = "";
+                const sorted = snapshot.docs.sort((a,b) => (b.data().timestamp?.seconds || 0) - (a.data().timestamp?.seconds || 0));
+                
+                sorted.forEach(d => {
+                    const data = d.data();
+                    const div = document.createElement('div');
+                    div.className = "suggestion-item border-l-red-900/40";
+                    div.innerHTML = `
+                        <div class="text-[8px] text-zinc-700 mb-1 uppercase tracking-tighter font-mono">USER_ID: ${data.userId}</div>
+                        <div class="text-sm text-zinc-300 font-light leading-snug">${data.text}</div>
+                        <div class="mt-4 flex opacity-40 hover:opacity-100 transition-opacity">
+                            <span class="admin-btn" onclick="window.admDel('${d.id}')">[DELETE]</span>
+                            <span class="admin-btn" onclick="window.admBan('${data.userId}')">[RESTRICT_USER]</span>
+                        </div>
+                    `;
+                    list.appendChild(div);
+                });
+            }, (err) => console.log(err));
+        }
+
+        window.handleSendSuggestion = async () => {
+            const input = document.getElementById('msg-input');
+            const capInput = document.getElementById('captcha-input');
+            if (isBanned || !input.value.trim() || capInput.value.trim().toUpperCase() !== currentCaptcha) {
+                refreshCaptcha();
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'suggestions'), {
+                    text: input.value.trim(),
+                    userId: currentUser.uid,
+                    timestamp: serverTimestamp()
+                });
+                input.value = "";
+                capInput.value = "";
+                refreshCaptcha();
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        };
+
+        window.admDel = async (id) => { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'suggestions', id)); };
+        window.admBan = async (uid) => { await setDoc(doc(db, 'artifacts', appId, 'users', uid, 'settings', 'main'), { banned: true }, { merge: true }); };
+
+        refreshCaptcha();
+    </script>
+
     <script>
-        // Sistema de navegación v4.3 - Estabilidad Reforzada
         function showSection(sectionId) {
-            const validSections = ['home', 'about', 'frequent', 'discord', 'youtube', 'contacts', 'updates'];
+            const validSections = ['home', 'about', 'suggestions', 'frequent', 'discord', 'youtube', 'contacts', 'updates'];
             const activeId = (sectionId && validSections.includes(sectionId)) ? sectionId : 'home';
 
-            // Reset UI
             document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-link'));
 
-            // Set Active
             const targetSection = document.getElementById(activeId);
             if(targetSection) targetSection.classList.add('active');
 
             const activeNavButton = document.getElementById('link-' + activeId);
             if(activeNavButton) activeNavButton.classList.add('active-link');
 
-            // Scroll Top Fix (Ensures absolute 0,0)
             window.scrollTo({ top: 0, behavior: 'auto' });
         }
 
@@ -391,15 +695,12 @@
             window.location.hash = sectionId;
         }
 
-        // Listener para cambios de Hash
         window.addEventListener('hashchange', () => {
             const sectionId = window.location.hash.replace('#', '');
             showSection(sectionId);
         });
 
-        // DOMContentLoaded es más rápido que 'load' para evitar el parpadeo inicial
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("Scam Preventor v4.3 | Stability Patch Active | Developed by Mejoradal4");
             const initialSection = window.location.hash.replace('#', '') || 'home';
             showSection(initialSection);
         });
